@@ -9,20 +9,28 @@
     <title>WEATHER</title>
 </head>
 <body>
-    <nav class="navbar bg-light">
-        <div class="container-fluid">
-            <span class="navbar-brand mb-0 h1">WEATHER DASHBOARD</span>
-        </div>
-    </nav>
+    <header class="p-5 text-center bg-light">
+        <h1 class="mb-3">WEATHER DASHBOARD</h1>
+    </header>
+    <content class="container">
     <aside>
         SEARCH FOR CITY
+        <div class="form-group col-sm">
+            <label for="exampleFormControlTextarea1">CITY NAME</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="1"></textarea>
+          </div>
+        <button type="button" class="btn btn-primary btn-lg btn-block">SEARCH</button>
     </aside>
-    <div>
+    <div class="col-sm">
+    <div class="row">
         CURRENT CITY
     </div>
-    <div>
+    <div class="row">
         5 DAY WEATHER FOR CURRENT CITY
     </div>
+</div>
+</content>
 </body>
+<script src="script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 </html>
