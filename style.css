@@ -1,4 +1,43 @@
+body {
+    font-family: 'Crimson Pro', serif;
+}
+header {
+    background-image: linear-gradient(to right, rgba(255,0,0,0), rgb(0, 26, 255));
+}
+
 content {
     display: flex;
     align-items: left;
+}
+aside {
+    max-width: 30%;
+    margin-right: 5%;
+}
+
+main {
+    max-width: 100%;
+}
+.btn {
+    margin-top: 1%;
+    margin-bottom: 2%;
+}
+.container {
+    margin-left: 3%;
+    margin-right: 3%;
+    max-width: 95%;
+}
+
+.current-city {
+    border-style: solid;
+    border-width: medium;
+    margin-top: 1%;
+    padding: 1%;
+}
+.history {
+border-style: solid;
+border-top-width: medium;
+border-bottom-width: 0;
+border-left-width: 0;
+border-right-width: 0;
+
 }
