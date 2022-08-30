@@ -1,4 +1,4 @@
-const TEMP_CITY = "KIRKLAND"; // Replace me later with user input from form
+const TEMP_CITY = document.getElementById('userInput').value; // Replace me later with user input from form
 const API_KEY = "c2647d1123d8569a6d9fce9c4ea94398";
 const CURRENT_WEATHER_ENDPOINT = 'https://api.openweathermap.org/data/2.5/weather?';
 const FORECAST_ENDPOINT = 'https://api.openweathermap.org/data/2.5/forecast?'
@@ -11,16 +11,21 @@ $("#searchButton").click(function(event){
     event.preventDefault();
     var cityName = TEMP_CITY;
     var cityLatandLong = getLatAndLongFromCityName(cityName);
+    console.log(cityLatandLong);
     var weatherData = getWeatherDataFromApi(cityLatandLong[0], cityLatandLong[1]);
     console.log(weatherData.list[0]);
     var todayWeather = weatherData.list[0];
     var temp = todayWeather.main.temp;
     var wind = todayWeather.wind.speed;
     var humidity = todayWeather.main.humidity;
+    var icon = todayWeather.weather[0].icon;
 
-    document.getElementById('currentTemp').innerText = temp;
-    document.getElementById('currentWind').innerText = wind;
-    document.getElementById('currentHumidity').innerText = humidity;
+    document.getElementById('cityName').innerText = cityName;
+    document.getElementById('currentTemp').append(temp);
+    document.getElementById('currentWind').append(wind);
+    document.getElementById('currentHumidity').append(humidity);
+    document.getElementById('icon').innerText = icon;
+    
 })
 
 function getLatAndLongFromCityName(cityname) {
@@ -54,6 +59,11 @@ function getWeatherDataFromApi(lat, lon) {
     });
 
     return weather_data;
+}
+function get5DayForecast (lat, lon) {
+    for (var i= 0; i < 5; i++) {
+        
+    }
 }
 
 //var latAndLong = getLatAndLongFromCityName(TEMP_CITY);
