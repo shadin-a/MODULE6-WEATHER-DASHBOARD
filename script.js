@@ -4,17 +4,20 @@ const CURRENT_WEATHER_ENDPOINT = 'https://api.openweathermap.org/data/2.5/weathe
 //https://api.openweathermap.org/data/2.5/onecall?lat=47.3075369&lon=-122.2301808&appid=f077831005b0a99879525b916f58d7b5&units=imperial
 const FORECAST_ENDPOINT = 'https://api.openweathermap.org/data/2.5/forecast?'
 const SEARCH_BUTTON = document.getElementById("searchButton");
-
+var cityHistoryEl = document.querySelector('#history');
+let history = [];
 
 $("#searchButton").click(function(event){
     event.preventDefault();
     const cityName = document.getElementById('userInput').value;
-    console.log(cityName);
+    //console.log(cityName);
 
     // 1. Get lat and Long
     var cityLatandLong = getLatAndLongFromCityName(cityName);
-    console.log('lat and long: ', cityLatandLong);
-
+   // console.log('lat and long: ', cityLatandLong);
+    history.push(cityName);
+    localStorage.setItem("Searched Cities", JSON.stringify(history));
+    putLocalStorageinButton(cityName);
     // 2. Pass lat and long into api to get weather data
     // data = getWeatherDataFromApi(cityLatandLong);
 
@@ -24,8 +27,8 @@ $("#searchButton").click(function(event){
 
 function putDataInDivs(weatherData) {
     get5DayForecast(weatherData.list)
-    console.log(weatherData);
-    var todayWeather = weatherData;
+    //console.log(weatherData);
+    var todayWeather = weatherData.list[0];
     console.log(todayWeather);
     var temp = todayWeather.main.temp;
     var wind = todayWeather.wind.speed;
@@ -34,7 +37,6 @@ function putDataInDivs(weatherData) {
     document.getElementById('currentTemp').innerText = ('Temp: ' + temp + ' F');
     document.getElementById('currentWind').innerText = ('Wind: ' + wind + ' MPH');
     document.getElementById('currentHumidity').innerText = ('Humidity: ' + humidity + ' %');
-    document.getElementById('currentUVI').innerText = ('UVI' + UVI);
     document.getElementById('icon').innerText = icon;
 } 
 
@@ -57,7 +59,7 @@ function getWeatherDataFromApi(lat, lon) {
         if (response.ok){
         return response.json()};
     }).then((data) => {
-        console.log(data)
+        //console.log(data)
         putDataInDivs(data)
     })
    
@@ -65,18 +67,32 @@ function getWeatherDataFromApi(lat, lon) {
 
 function get5DayForecast (array) {
     for (var i= 0; i < 5; i++) {
-        console.log(array[i])
+        //console.log(array[i])
+        
     }
 }
 
 function saveCityInLocalStorage(cityName) {
-    // let cityName = JSON.parse(localStorage.getItem(cityName)) || [
-    // ];
-    //prompted when search
-   // 
+   
+   
 }
 
 function putLocalStorageinButton(){
-    //for each city in array, create button
+    var savedCities = localStorage.getItem(cityName);
+    if (savedCities) {
+        savedCities = JSON.parse(savedCities);
+        cityHistoryEl.innerHTML = '';
+    for (var i = savedCities.length - 1; i >= 0; i--) {
+        var btn = document.createElement('button');
+        btn.setAttribute('type', 'button',);        
+        btn.textContent = savedCities[i];
+        btn.setAttribute('data-search', savedCities[i]);
+        cityHistoryEl.append(btn);
+    }
+    } else return;
 }
 
+// 1. put weather in big div
+// 2. fix the bug for local Storage
+// 3. console log local Storage
+// 4.put weather in five day divs
