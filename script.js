@@ -29,7 +29,6 @@ function putDataInDivs(weatherData) {
     get5DayForecast(weatherData.list)
     //console.log(weatherData);
     var todayWeather = weatherData.list[0];
-    console.log(todayWeather);
     var temp = todayWeather.main.temp;
     var wind = todayWeather.wind.speed;
     var humidity = todayWeather.main.humidity;
@@ -66,11 +65,17 @@ function getWeatherDataFromApi(lat, lon) {
 }
 
 function get5DayForecast (array) {
+    
     for (var i= 0; i < 5; i++) {
+        var weatherdataforday = array[i]
         //console.log(array[i])
-        
+        var elementID = 'day' + i.toString()
+        const DayDiv = document.getElementById(elementID);
+        DayDiv.innerHTML = weatherdataforday.main.temp;
     }
+   
 }
+
 
 function saveCityInLocalStorage(cityName) {
    
@@ -92,7 +97,6 @@ function putLocalStorageinButton(){
     } else return;
 }
 
-// 1. put weather in big div
+
 // 2. fix the bug for local Storage
 // 3. console log local Storage
-// 4.put weather in five day divs
