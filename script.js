@@ -5,24 +5,31 @@ const CURRENT_WEATHER_ENDPOINT = 'https://api.openweathermap.org/data/2.5/weathe
 const FORECAST_ENDPOINT = 'https://api.openweathermap.org/data/2.5/forecast?'
 const SEARCH_BUTTON = document.getElementById("searchButton");
 var cityHistoryEl = document.querySelector('#history');
-let history = [];
+let history 
+var cityLatandLong 
+var cityName
+
+//= JSON.parse(localStorage.getItem("Searched Cities"));
 
 $("#searchButton").click(function(event){
     event.preventDefault();
     const cityName = document.getElementById('userInput').value;
-    //console.log(cityName);
+    console.log(cityName);
 
-    // 1. Get lat and Long
-    var cityLatandLong = getLatAndLongFromCityName(cityName);
-   // console.log('lat and long: ', cityLatandLong);
-    history.push(cityName);
-    localStorage.setItem("Searched Cities", JSON.stringify(history));
+  
+
+    //check to see if search city already in local storage
+    if (!history.includes(cityName)) {
+        console.log('CITY IS NOT IN LOCAL STORGE')
+        history.push(cityName);
+        localStorage.setItem("Searched Cities", JSON.stringify(history));
+    } else {
+        console.log('FOUND CITY IN LS')
+    }
+    //  cityLatandLong = getLatAndLongFromCityName(cityName);
+    // console.log(cityLatandLong);
+    console.log(history);
     putLocalStorageinButton(cityName);
-    // 2. Pass lat and long into api to get weather data
-    // data = getWeatherDataFromApi(cityLatandLong);
-
-    // 3. Render weather data on page
-    //putDataInDivs(data);
 })
 
 function putDataInDivs(weatherData) {
@@ -45,6 +52,7 @@ function getLatAndLongFromCityName(cityName) {
     .then((response) => {
         return response.json();
     }).then((data) => {   
+        console.log(data);
        getWeatherDataFromApi(data[0].lat, data[0].lon)
     });
 }
@@ -82,21 +90,54 @@ function saveCityInLocalStorage(cityName) {
    
 }
 
+//FUNCTION FOR LOADING LS BUTTONS IMMEDIATELY
+function getLocalStorage(){
+  // check to see if there is any search history in local storage.
+  if (localStorage.getItem("Searched Cities")) {
+    console.log('THERE IS SEARCH HISTORY!')
+    history = JSON.parse(localStorage.getItem("Searched Cities"));
+} else {
+    console.log('NO SEARCH HISTORY LOL')
+    history = []
+};
+}
+getLocalStorage();
 function putLocalStorageinButton(){
-    var savedCities = localStorage.getItem(cityName);
-    if (savedCities) {
-        savedCities = JSON.parse(savedCities);
+    if (history) {
         cityHistoryEl.innerHTML = '';
-    for (var i = savedCities.length - 1; i >= 0; i--) {
+    for (var i = history.length - 1; i >= 0; i--) {
         var btn = document.createElement('button');
+        console.log(history[i])
         btn.setAttribute('type', 'button',);        
-        btn.textContent = savedCities[i];
-        btn.setAttribute('data-search', savedCities[i]);
+        btn.textContent = history[i];
+        btn.setAttribute('data-search', history[i]);
+        btn.classList.add('btn', 'btn-primary', 'btn-lg', 'btn-block')
+        btn.addEventListener('click', searchHistory)
         cityHistoryEl.append(btn);
     }
     } else return;
-}
+} 
+putLocalStorageinButton();
 
+
+function searchHistory(event){
+  console.log('SEARCH HISTORY WAS REQUESTED')  
+  event.preventDefault();
+    const cityName = event.target.dataset.search;
+    console.log(cityName);
+    //check to see if search city already in local storage
+    if (!history.includes(cityName)) {
+        console.log('CITY IS NOT IN LOCAL STORGE')
+        history.push(cityName);
+        localStorage.setItem("Searched Cities", JSON.stringify(history));
+    } else {
+        console.log('FOUND CITY IN LS')
+    }
+    //  cityLatandLong = getLatAndLongFromCityName(cityName);
+    // console.log(cityLatandLong);
+    console.log(history);
+    putLocalStorageinButton(cityName);
+}
 
 // 2. fix the bug for local Storage
 // 3. console log local Storage
