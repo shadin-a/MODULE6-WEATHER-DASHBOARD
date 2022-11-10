@@ -29,6 +29,7 @@ $("#searchButton").click(function(event){
     //  cityLatandLong = getLatAndLongFromCityName(cityName);
     // console.log(cityLatandLong);
     console.log(history);
+    getLatAndLongFromCityName(cityName);
     putLocalStorageinButton(cityName);
 })
 
@@ -85,11 +86,6 @@ function get5DayForecast (array) {
 }
 
 
-function saveCityInLocalStorage(cityName) {
-   
-   
-}
-
 //FUNCTION FOR LOADING LS BUTTONS IMMEDIATELY
 function getLocalStorage(){
   // check to see if there is any search history in local storage.
@@ -137,7 +133,7 @@ function searchHistory(event){
     // console.log(cityLatandLong);
     console.log(history);
     putLocalStorageinButton(cityName);
+    getLatAndLongFromCityName(cityName)
 }
 
-// 2. fix the bug for local Storage
-// 3. console log local Storage
+//ADD API CALL TO LS SEARCH HISTORY
