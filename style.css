@@ -16,6 +16,14 @@ aside {
 
 main {
     max-width: 100%;
+    
+} 
+main div.current-city{
+    background-color: rgb(207, 211, 255);
+}
+
+.forecastRow {
+    margin-top: 2%;
 }
 .btn {
     margin-top: 1%;
@@ -29,7 +37,10 @@ main {
 
 .current-city {
     border-style: solid;
+    border-color: rgb(207, 211, 255) ;
     border-width: medium;
+    border-radius: 30px ;
+    box-shadow: 2px 5px #a9a9a9;
     margin-top: 1%;
     padding: 1%;
 }
