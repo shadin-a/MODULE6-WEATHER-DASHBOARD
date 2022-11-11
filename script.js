@@ -9,7 +9,7 @@ let history
 var cityLatandLong 
 var cityName
 
-
+//FUNCTION FOR SERAHCING A CITY. IT WILL SEND THE DATA TO START THE API CALL DOMINO EFFECT
 $("#searchButton").click(function(event){
     event.preventDefault();
     const cityName = document.getElementById('userInput').value;
@@ -29,7 +29,7 @@ $("#searchButton").click(function(event){
     getLatAndLongFromCityName(cityName);
     putLocalStorageinButton(cityName);
 })
-
+//FUNCTION TO TAKE INFO FROM API AND PUTTING IT INTO DIV FOR CURRENT WEATHER
 function putDataInDivs(weatherData) {
   
     console.log(weatherData);
@@ -46,7 +46,7 @@ function putDataInDivs(weatherData) {
     $('#icon').attr("src",'https://openweathermap.org/img/wn/'+ icon +'.png') ;   
     get5DayForecast(weatherData.list)
 } 
-
+//FUNCTION FOR GETTING LAT AND LONG FOR THE API CALL
 function getLatAndLongFromCityName(cityName) {
     var api_call = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=5&appid=${API_KEY}`
     const stuff = fetch(api_call) // using variable name to grab coordinates
@@ -56,6 +56,7 @@ function getLatAndLongFromCityName(cityName) {
        getWeatherDataFromApi(data[0].lat, data[0].lon)
     });
 }
+//THE ACTUAL API CALL
 function getWeatherDataFromApi(lat, lon) {
 
     let api_call = FORECAST_ENDPOINT + "lat=" + lat + "&lon=" + lon + "&appid=" + API_KEY + "&units=imperial";
@@ -70,7 +71,7 @@ function getWeatherDataFromApi(lat, lon) {
     })
    
 }
-
+//FUNCTION FOR POPULATING THE FORECAST VIA LOOP
 function get5DayForecast (array) {
     
     for (var i= 0; i < 5; i++) {
@@ -92,7 +93,6 @@ function get5DayForecast (array) {
     }
    
 }
-
 
 //FUNCTION FOR LOADING LS BUTTONS IMMEDIATELY
 function getLocalStorage(){
