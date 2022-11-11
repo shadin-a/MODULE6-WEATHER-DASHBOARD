@@ -42,7 +42,7 @@ function putDataInDivs(weatherData) {
     var wind = todayWeather.wind.speed;
     var humidity = todayWeather.main.humidity;
     var icon = todayWeather.weather[0].icon;
-    document.getElementById('cityName').innerText = name;
+    document.getElementById('cityName').innerText = ('Weather Report For...' + name);
     document.getElementById('currentTemp').innerText = ('Temp: ' + temp + ' F');
     document.getElementById('currentWind').innerText = ('Wind: ' + wind + ' MPH');
     document.getElementById('currentHumidity').innerText = ('Humidity: ' + humidity + ' %');
@@ -79,10 +79,24 @@ function get5DayForecast (array) {
     
     for (var i= 0; i < 5; i++) {
         var weatherdataforday = array[i]
-        //console.log(array[i])
-        var elementID = 'day' + i.toString()
-        const DayDiv = document.getElementById(elementID);
-        DayDiv.innerHTML = weatherdataforday.main.temp;
+        console.log(array[i])
+        var icon = weatherdataforday.weather[i].icon;
+        var tempID = 'day' + i.toString() +'Temp'
+        var windID = 'day' + i.toString() + 'Wind';
+        var HumidityID = 'day' + i.toString() + 'Humidity';
+        const DayDiv = document.getElementById(tempID);
+        const WindDiv = document.getElementById(windID);
+        const HumidityDiv = document.getElementById(HumidityID);
+        //console.log(WindDiv)
+        DayDiv.innerHTML = 'Temp: ' + weatherdataforday.main.temp;
+        WindDiv.innerHTML = 'Wind: ' + weatherdataforday.wind.speed;
+        HumidityDiv.innerHTML = 'Humidity: ' + weatherdataforday.main.humidity;
+        $('#icon').attr("src",'https://openweathermap.org/img/wn/'+ icon +'.png') ;
+        
+        //WHY IS WIND DIV NOT POPULATING. INNER HTML IS SO VALID HERE. FIGHT ME.
+      
+
+      
     }
    
 }

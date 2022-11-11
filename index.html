@@ -22,18 +22,12 @@
             <button type="button" class="btn btn-primary btn-lg btn-block" id="searchButton">SEARCH</button>
           </div>
           <div class="row" id="history">
-            <button type="button" class="btn btn-primary btn-lg btn-block">L</button>
-            <button type="button" class="btn btn-primary btn-lg btn-block">o</button>
-            <button type="button" class="btn btn-primary btn-lg btn-block">c</button>
-            <button type="button" class="btn btn-primary btn-lg btn-block">a</button>
-            <button type="button" class="btn btn-primary btn-lg btn-block">l</button>
-            <button type="button" class="btn btn-primary btn-lg btn-block">storage</button>
           </div>
     </aside>
     <main class="col-sm rounded">
-    <div class="row current-city background-color-grey" id="currentCityWeather">
+    <div class="row current-city" id="currentCityWeather">
         <div class=" col-sm">
-        <h3 id="cityName"></h3>
+        <h3 id="cityName">Weather Report For...</h3>
         <div id="currentTemp">Temp: --</div>
         <div id="currentWind"> Wind: -- </div>
         <div id="currentHumidity"> Humidity: --</div>
@@ -43,15 +37,33 @@
     </div>
     <div class="row forecastRow">
         <div class="col-sm border border-3 " id="day0">
+            <p class="text-center"><img id= "day0WeatherIcon" src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-weather/ilu2.webp" width="50px"></p>
+            <p id="day0Temp" class="card-text">Temp: --</p>
+            <p id ="day0Wind" class="card-text">Wind: --</p>
+            <p id= "day0Humidity" class="card-text">Humidity: --</p>
+        </div>
+        <div class="col-sm" id="day1">   
+            <p class="text-center"><img id= "day1WeatherIcon" src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-weather/ilu2.webp" width="50px"></p>
+            <p id="day1Temp" class="card-text">Temp: --</p>
+            <p id ="day1Wind" class="card-text">Wind: --</p>
+            <p id= "day1Humidy" class="card-text">Humidity: --</p></div>
+        <div class="col-sm" id="day2">
             <p class="text-center"><img id= "day1WeatherIcon" src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-weather/ilu2.webp" width="50px"></p>
             <p id="day1Temp" class="card-text">Temp: --</p>
             <p id ="day1Wind" class="card-text">Wind: --</p>
             <p id= "day1Humidy" class="card-text">Humidity: --</p>
         </div>
-        <div class="col-sm" id="day1">2</div>
-        <div class="col-sm" id="day2">3</div>
-        <div class="col-sm" id="day3">4</div>
-        <div class="col-sm" id="day4">5</div>
+        <div class="col-sm" id="day3">   
+            <p class="text-center"><img id= "day1WeatherIcon" src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-weather/ilu2.webp" width="50px"></p>
+            <p id="day1Temp" class="card-text">Temp: --</p>
+            <p id ="day1Wind" class="card-text">Wind: --</p>
+            <p id= "day1Humidy" class="card-text">Humidity: --</p></div>
+        <div class="col-sm" id="day4">
+            <p class="text-center"><img id= "day1WeatherIcon" src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-weather/ilu2.webp" width="50px"></p>
+            <p id="day1Temp" class="card-text">Temp: --</p>
+            <p id ="day1Wind" class="card-text">Wind: --</p>
+            <p id= "day1Humidy" class="card-text">Humidity: --</p>
+        </div>
     </div>
 </main>
 </content>
