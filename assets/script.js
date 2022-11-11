@@ -52,7 +52,7 @@ function putDataInDivs(weatherData) {
 } 
 //FUNCTION FOR GETTING LAT AND LONG FOR THE API CALL
 function getLatAndLongFromCityName(cityName) {
-    var api_call = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=5&appid=${API_KEY}`
+    var api_call = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=5&appid=${API_KEY}`
     const stuff = fetch(api_call) // using variable name to grab coordinates
     .then((response) => {
         return response.json();
