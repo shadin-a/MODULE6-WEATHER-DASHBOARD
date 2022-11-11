@@ -9,7 +9,6 @@ let history
 var cityLatandLong 
 var cityName
 
-//= JSON.parse(localStorage.getItem("Searched Cities"));
 
 $("#searchButton").click(function(event){
     event.preventDefault();
@@ -26,8 +25,6 @@ $("#searchButton").click(function(event){
     } else {
         console.log('FOUND CITY IN LS')
     }
-    //  cityLatandLong = getLatAndLongFromCityName(cityName);
-    // console.log(cityLatandLong);
     console.log(history);
     getLatAndLongFromCityName(cityName);
     putLocalStorageinButton(cityName);
@@ -56,7 +53,6 @@ function getLatAndLongFromCityName(cityName) {
     .then((response) => {
         return response.json();
     }).then((data) => {   
-        //console.log(data);
        getWeatherDataFromApi(data[0].lat, data[0].lon)
     });
 }
@@ -70,7 +66,6 @@ function getWeatherDataFromApi(lat, lon) {
         if (response.ok){
         return response.json()};
     }).then((data) => {
-        //console.log(data)
         putDataInDivs(data)
     })
    
@@ -81,18 +76,19 @@ function get5DayForecast (array) {
     for (var i= 0; i < 5; i++) {
         var weatherdataforday = array[i]
         console.log(array[i])
-        //var icon = weatherdataforday.weather[i].icon;
+        var icon = weatherdataforday.weather[i].icon;
         var tempID = 'day' + i.toString() +'Temp'
         var windID = 'day' + i.toString() + 'Wind';
         var HumidityID = 'day' + i.toString() + 'Humidity';
+        var IconID = 'day' + i.toString() + 'WeatherIcon';
         const DayDiv = document.getElementById(tempID);
         const WindDiv = document.getElementById(windID);
         const HumidityDiv = document.getElementById(HumidityID);
-        //console.log(WindDiv)
+        const IconDiv = document.getElementById(IconID);
         DayDiv.innerHTML = ('Temp: ' + weatherdataforday.main.temp + ' F');
         WindDiv.innerHTML = ('Wind: ' + weatherdataforday.wind.speed + ' MPH');
         HumidityDiv.innerHTML = ('Humidity: ' + weatherdataforday.main.humidity + ' %');
-        //$('#icon').attr("src",'https://openweathermap.org/img/wn/'+ icon +'.png') ;
+        $(IconDiv).attr("src",'https://openweathermap.org/img/wn/'+ icon +'.png') ;
         
         //WHY IS WIND DIV NOT POPULATING. INNER HTML IS SO VALID HERE. FIGHT ME.
       
