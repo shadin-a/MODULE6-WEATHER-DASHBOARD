@@ -34,7 +34,7 @@ $("#searchButton").click(function(event){
 })
 
 function putDataInDivs(weatherData) {
-    get5DayForecast(weatherData.list)
+  
     console.log(weatherData);
     var todayWeather = weatherData.list[0];
     var name = weatherData.city.name
@@ -42,11 +42,12 @@ function putDataInDivs(weatherData) {
     var wind = todayWeather.wind.speed;
     var humidity = todayWeather.main.humidity;
     var icon = todayWeather.weather[0].icon;
-    document.getElementById('cityName').innerText = ('Weather Report For...' + name);
+    document.getElementById('cityName').innerText = name;
     document.getElementById('currentTemp').innerText = ('Temp: ' + temp + ' F');
     document.getElementById('currentWind').innerText = ('Wind: ' + wind + ' MPH');
     document.getElementById('currentHumidity').innerText = ('Humidity: ' + humidity + ' %');
     $('#icon').attr("src",'https://openweathermap.org/img/wn/'+ icon +'.png') ;   
+    get5DayForecast(weatherData.list)
 } 
 
 function getLatAndLongFromCityName(cityName) {
@@ -80,7 +81,7 @@ function get5DayForecast (array) {
     for (var i= 0; i < 5; i++) {
         var weatherdataforday = array[i]
         console.log(array[i])
-        var icon = weatherdataforday.weather[i].icon;
+        //var icon = weatherdataforday.weather[i].icon;
         var tempID = 'day' + i.toString() +'Temp'
         var windID = 'day' + i.toString() + 'Wind';
         var HumidityID = 'day' + i.toString() + 'Humidity';
@@ -88,10 +89,10 @@ function get5DayForecast (array) {
         const WindDiv = document.getElementById(windID);
         const HumidityDiv = document.getElementById(HumidityID);
         //console.log(WindDiv)
-        DayDiv.innerHTML = 'Temp: ' + weatherdataforday.main.temp;
-        WindDiv.innerHTML = 'Wind: ' + weatherdataforday.wind.speed;
-        HumidityDiv.innerHTML = 'Humidity: ' + weatherdataforday.main.humidity;
-        $('#icon').attr("src",'https://openweathermap.org/img/wn/'+ icon +'.png') ;
+        DayDiv.innerHTML = ('Temp: ' + weatherdataforday.main.temp + ' F');
+        WindDiv.innerHTML = ('Wind: ' + weatherdataforday.wind.speed + ' MPH');
+        HumidityDiv.innerHTML = ('Humidity: ' + weatherdataforday.main.humidity + ' %');
+        //$('#icon').attr("src",'https://openweathermap.org/img/wn/'+ icon +'.png') ;
         
         //WHY IS WIND DIV NOT POPULATING. INNER HTML IS SO VALID HERE. FIGHT ME.
       
