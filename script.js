@@ -76,7 +76,7 @@ function get5DayForecast (array) {
     for (var i= 0; i < 5; i++) {
         var weatherdataforday = array[i]
         console.log(array[i])
-        var icon = weatherdataforday.weather[i].icon;
+       var icon = weatherdataforday.weather[0].icon;
         var tempID = 'day' + i.toString() +'Temp'
         var windID = 'day' + i.toString() + 'Wind';
         var HumidityID = 'day' + i.toString() + 'Humidity';
@@ -84,16 +84,11 @@ function get5DayForecast (array) {
         const DayDiv = document.getElementById(tempID);
         const WindDiv = document.getElementById(windID);
         const HumidityDiv = document.getElementById(HumidityID);
-        const IconDiv = document.getElementById(IconID);
+       const IconDiv = document.getElementById(IconID);
         DayDiv.innerHTML = ('Temp: ' + weatherdataforday.main.temp + ' F');
         WindDiv.innerHTML = ('Wind: ' + weatherdataforday.wind.speed + ' MPH');
         HumidityDiv.innerHTML = ('Humidity: ' + weatherdataforday.main.humidity + ' %');
-        $(IconDiv).attr("src",'https://openweathermap.org/img/wn/'+ icon +'.png') ;
-        
-        //WHY IS WIND DIV NOT POPULATING. INNER HTML IS SO VALID HERE. FIGHT ME.
-      
-
-      
+        $(IconDiv).attr("src",'https://openweathermap.org/img/wn/'+ icon +'.png') ;  
     }
    
 }
@@ -116,7 +111,7 @@ function putLocalStorageinButton(){
         cityHistoryEl.innerHTML = '';
     for (var i = history.length - 1; i >= 0; i--) {
         var btn = document.createElement('button');
-        console.log(history[i])
+        //console.log(history[i])
         btn.setAttribute('type', 'button',);        
         btn.textContent = history[i];
         btn.setAttribute('data-search', history[i]);
@@ -148,5 +143,3 @@ function searchHistory(event){
     putLocalStorageinButton(cityName);
     getLatAndLongFromCityName(cityName)
 }
-
-//ADD API CALL TO LS SEARCH HISTORY
