@@ -15,8 +15,6 @@ $("#searchButton").click(function(event){
     const cityName = document.getElementById('userInput').value;
     console.log(cityName);
 
-  
-
     //check to see if search city already in local storage
     if (!history.includes(cityName)) {
         console.log('CITY IS NOT IN LOCAL STORGE')
@@ -34,12 +32,18 @@ function putDataInDivs(weatherData) {
   
     console.log(weatherData);
     var todayWeather = weatherData.list[0];
+    var dt = todayWeather.dt;
+    var timezone = weatherData.city.timezone;
+    var adjustedTime = timezone / 60;
+    
     var name = weatherData.city.name
+    var date = moment.unix(dt).utc().utcOffset(adjustedTime).format('MM/DD/YYYY');
     var temp = todayWeather.main.temp;
     var wind = todayWeather.wind.speed;
     var humidity = todayWeather.main.humidity;
     var icon = todayWeather.weather[0].icon;
     document.getElementById('cityName').innerText = name;
+    document.getElementById('currentDate').innerText = date;
     document.getElementById('currentTemp').innerText = ('Temp: ' + temp + ' F');
     document.getElementById('currentWind').innerText = ('Wind: ' + wind + ' MPH');
     document.getElementById('currentHumidity').innerText = ('Humidity: ' + humidity + ' %');
