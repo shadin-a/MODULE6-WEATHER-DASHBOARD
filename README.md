@@ -10,7 +10,7 @@
 
 
   ## DESCRIPTION
-  Use Open Weather Map API to get todays weather and the five day forecast for a city of your choosing! After you've searched a city, it will be avaible in local storage at the click of a button to view those stats again!
+  Use Open Weather Map API to get todays weather and the five day forecast for a city of your choosing! After you've searched a city, it will be available in local storage at the click of a button to view those stats again. Have fun planning your trips and pack wisely!
 
   </br> Deployed App: https://shadin-a.github.io/MODULE6-WEATHER-DASHBOARD/
 
